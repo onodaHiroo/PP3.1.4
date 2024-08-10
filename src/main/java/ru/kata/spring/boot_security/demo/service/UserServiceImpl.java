@@ -18,12 +18,10 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     private UserDao userDao;
-    private UserRepository userRepository;
 
     @Autowired
-    public UserServiceImpl(UserDao userDao, UserRepository userRepository) {
+    public UserServiceImpl(UserDao userDao) {
         this.userDao = userDao;
-        this.userRepository = userRepository;
     }
 
     @Override
@@ -49,14 +47,5 @@ public class UserServiceImpl implements UserService {
     @Override
     public User show(long id) {
         return userDao.show(id);
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> user = userRepository.findByNickName(username);
-        if(user.isEmpty()){
-            throw new UsernameNotFoundException("User not found!");
-        }
-        return new MyUserDetails(user.get());
     }
 }
