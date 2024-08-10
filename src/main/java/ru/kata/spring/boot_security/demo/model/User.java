@@ -21,14 +21,18 @@ public class User {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "role")
+    private String role;
+
     public User() {
 
     }
 
-    public User(String nickName, String email, String password) {
+    public User(String nickName, String email, String password, String role) {
         this.nickName = nickName;
         this.email = email;
         this.password = password;
+        this.role = role;
     }
 
     public long getId() {
@@ -71,5 +75,13 @@ public class User {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
