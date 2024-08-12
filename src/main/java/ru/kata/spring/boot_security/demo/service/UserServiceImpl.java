@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.kata.spring.boot_security.demo.dao.UserDao;
 import ru.kata.spring.boot_security.demo.model.User;
-import ru.kata.spring.boot_security.demo.security.MyUserDetails;
 
 import javax.persistence.NoResultException;
 import java.util.List;
@@ -63,6 +62,6 @@ public class UserServiceImpl implements UserService {
 //        return new MyUserDetails(user.get());
 
 
-        return new MyUserDetails(userDao.findByEmail(email));
+        return userDao.findByEmail(email);
     }
 }
