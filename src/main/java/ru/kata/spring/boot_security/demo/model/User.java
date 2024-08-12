@@ -13,23 +13,20 @@ public class User {
     private long id;
 
     @Column(name = "nick_name")
-    private String nickName;
+    private String username;
 
-    @Column(name = "email")
     private String email;
 
-    @Column(name = "password")
     private String password;
 
-    @Column(name = "role")
     private String role;
 
     public User() {
 
     }
 
-    public User(String nickName, String email, String password, String role) {
-        this.nickName = nickName;
+    public User(String username, String email, String password, String role) {
+        this.username = username;
         this.email = email;
         this.password = password;
         this.role = role;
@@ -43,12 +40,12 @@ public class User {
         this.id = id;
     }
 
-    public String getNickName() {
-        return nickName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -71,7 +68,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", nickName='" + nickName + '\'' +
+                ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';

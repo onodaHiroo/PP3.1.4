@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+</head>
+<body>
+<h1 th:align="center">Sign in</h1>
+<br/>
+
+<form name="f" method="post" action="/process_login">
+
+    <style>
+        h1{text-align: center}
+        form{text-align: center}
+    </style>
+
+    <label for="username">Введите email: </label>
+    <input type="text" name="username" id="username">
+    <br/>
+    <br/>
+    <label for="password">Введите пароль: </label>
+    <input type="password" name="password" id="password">
+    <br/>
+    <br/>
+    <input type="submit" value="Login"/>
+
+    <div th:if="${param.error}" style="color: red">
+        Неправильная почта или пароль
+    </div>
+
+</form>
+
+</body>
+</html>

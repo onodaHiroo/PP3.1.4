@@ -9,43 +9,46 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import ru.kata.spring.boot_security.demo.service.MyUserDetailsService;
 import ru.kata.spring.boot_security.demo.service.UserService;
-
-import java.net.PasswordAuthentication;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final SuccessUserHandler successUserHandler;
-    private final MyUserDetailsService myUserDetailsService;
+    private final UserService userService;
 
     @Autowired
-    public WebSecurityConfig(SuccessUserHandler successUserHandler, MyUserDetailsService myUserDetailsService) {
+    public WebSecurityConfig(SuccessUserHandler successUserHandler, UserService userService) {
         this.successUserHandler = successUserHandler;
-        this.myUserDetailsService = myUserDetailsService;
+        this.userService = userService;
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
+        http.csrf().disable().authorizeRequests()
+                //авторизация
+                .antMatchers("/auth/login", "error", "/", "/index").permitAll()
                 .antMatchers("/admin").hasRole("ADMIN")
-                .antMatchers("/", "/index").permitAll()
                 .anyRequest().authenticated()
+
+                //аутентификация
                 .and()
-                .formLogin().successHandler(successUserHandler)
-                .permitAll()
+                .formLogin().loginPage("/auth/login")
+                .loginProcessingUrl("/process_login")
+                .successHandler(successUserHandler)
+                .failureUrl("/auth/login?error")
+
+//                разлогин
                 .and()
                 .logout()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/")
+                .logoutSuccessUrl("/auth/login")
                 .permitAll();
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(myUserDetailsService);
+        auth.userDetailsService(userService);
     }
 
     @Bean
