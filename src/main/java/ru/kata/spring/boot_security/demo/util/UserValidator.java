@@ -9,6 +9,8 @@ import org.springframework.validation.Validator;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
+import javax.persistence.NoResultException;
+
 @Component
 public class UserValidator implements Validator {
     private final UserService userService;
@@ -28,10 +30,10 @@ public class UserValidator implements Validator {
         User user = (User) target;
         try {
             userService.loadUserByUsername(user.getEmail());
-        } catch (UsernameNotFoundException ignored) {
+        } catch (NoResultException | UsernameNotFoundException ignored) {
             return;
         }
 
-        errors.rejectValue("username", "", "Имя занято");
+        errors.rejectValue("email", "", "Email занят");
     }
 }

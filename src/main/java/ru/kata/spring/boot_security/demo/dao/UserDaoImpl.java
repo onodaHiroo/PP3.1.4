@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import ru.kata.spring.boot_security.demo.model.User;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
@@ -47,7 +48,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User findByEmail(String email) {
+    public User findByEmail(String email) throws NoResultException {
         return entityManager.createQuery("select u from User u where u.email =: email", User.class)
                 .setParameter("email", email).getSingleResult();
     }

@@ -10,6 +10,7 @@ import ru.kata.spring.boot_security.demo.dao.UserDao;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.security.MyUserDetails;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,13 +53,16 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    /////////////////USERSDETAILSERVICE
+    /////////////////USERSDETAILSERVICE/////////////////
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Optional<User> user = Optional.of(userDao.findByEmail(email));
-        if(user.isEmpty()){
-            throw new UsernameNotFoundException("User not found!");
-        }
-        return new MyUserDetails(user.get());
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException, NoResultException {
+//        Optional<User> user = Optional.of(userDao.findByEmail(email));
+//        if (user.isEmpty()) {
+//            throw new UsernameNotFoundException("User not found!");
+//        }
+//        return new MyUserDetails(user.get());
+
+
+        return new MyUserDetails(userDao.findByEmail(email));
     }
 }
