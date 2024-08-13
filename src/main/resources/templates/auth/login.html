@@ -10,6 +10,8 @@
 
 <form name="f" method="post" action="/process_login">
 
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
     <style>
         h1{text-align: center}
         form{text-align: center}
