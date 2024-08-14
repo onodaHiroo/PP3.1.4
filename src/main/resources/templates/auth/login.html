@@ -30,8 +30,14 @@
     <div th:if="${param.error}" style="color: red">
         Неправильная почта или пароль
     </div>
+    <br/>
+    <br/>
 
 </form>
 
+<form th:action="@{/auth/registration}" method="get">
+    <label>Still don't have an account?</label>
+    <button type="submit">Registration</button>
+</form>
 </body>
 </html>

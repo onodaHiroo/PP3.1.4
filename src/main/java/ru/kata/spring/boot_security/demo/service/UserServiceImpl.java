@@ -1,22 +1,30 @@
 package ru.kata.spring.boot_security.demo.service;
 
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.kata.spring.boot_security.demo.dao.UserDao;
+import ru.kata.spring.boot_security.demo.dao.interfaces.UserDao;
+import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
+import ru.kata.spring.boot_security.demo.service.interfaces.RoleService;
+import ru.kata.spring.boot_security.demo.service.interfaces.UserService;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.NoResultException;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    private UserDao userDao;
+    private final UserDao userDao;
 
     @Autowired
     public UserServiceImpl(UserDao userDao) {
@@ -29,13 +37,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User show(long id) {
+    public User show(Long id) {
         return userDao.show(id);
     }
 
     @Transactional
     @Override
     public void addNewUser(User user) {
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userDao.addNewUser(user);
     }
 
@@ -51,17 +61,9 @@ public class UserServiceImpl implements UserService {
         userDao.removeUserById(id);
     }
 
-
-    /////////////////USERSDETAILSERVICE/////////////////
+    //UserDetailsService
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException, NoResultException {
-//        Optional<User> user = Optional.of(userDao.findByEmail(email));
-//        if (user.isEmpty()) {
-//            throw new UsernameNotFoundException("User not found!");
-//        }
-//        return new MyUserDetails(user.get());
-
-
         return userDao.findByEmail(email);
     }
 }

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <title>Users</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<style>
+    #form{
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
+
+<form id="form">
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Roles</th>
+        </tr>
+
+        <tr th:each="user : ${users}">
+            <td th:text="${user.getId()}"></td>
+            <td th:text="${user.getUsername()}"></td>
+            <td th:text="${user.getEmail()}"></td>
+            <td th:text="${user.getPassword()}"></td>
+            <td th:text="${user.getRoles()}"></td>
+            <td>
+                <form th:action="@{/admin/edit}" th:method="get">
+                    <button type="submit" th:name="id" th:value="${user.getId()}">Edit</button>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/admin/delete}" th:method="get">
+                    <button type="submit" th:name="id" th:value="${user.getId()}">Delete</button>
+                </form>
+            </td>
+
+        </tr>
+    </table>
+
+    <br/>
+    <form th:action="@{admin/addNewUserButton}" th:method="get">
+        <button type="submit">Add new user</button>
+    </form>
+
+    <form th:action="@{/logout}" th:method="POST">
+        <button type="submit">Logout</button>
+    </form>
+
+</form>
+
+
+</body>
+</html>

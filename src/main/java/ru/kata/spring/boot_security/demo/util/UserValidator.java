@@ -7,12 +7,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import ru.kata.spring.boot_security.demo.model.User;
-import ru.kata.spring.boot_security.demo.service.UserService;
+import ru.kata.spring.boot_security.demo.service.interfaces.UserService;
 
 import javax.persistence.NoResultException;
 
 @Component
-public class UserValidator implements Validator {
+public class UserValidator implements Validator, MyValidator {
     private final UserService userService;
 
     @Autowired
@@ -35,5 +35,14 @@ public class UserValidator implements Validator {
         }
 
         errors.rejectValue("email", "", "Email занят");
+    }
+
+    public boolean userInDataBase(User user){
+        try {
+           userService.loadUserByUsername(user.getEmail());
+        } catch (NoResultException | UsernameNotFoundException exception){
+            return false;
+        }
+        return true;
     }
 }

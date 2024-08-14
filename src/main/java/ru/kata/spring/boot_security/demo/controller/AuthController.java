@@ -31,7 +31,7 @@ public class AuthController {
         return "auth/login";
     }
 
-    @GetMapping("registration")
+    @GetMapping("/registration")
     public String registrationPage(@ModelAttribute ("user") User user) {
         return "auth/registration";
     }

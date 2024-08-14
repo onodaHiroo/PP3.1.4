@@ -2,6 +2,7 @@ package ru.kata.spring.boot_security.demo.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import ru.kata.spring.boot_security.demo.dao.interfaces.UserDao;
 import ru.kata.spring.boot_security.demo.model.User;
 
 import javax.persistence.EntityManager;
@@ -43,7 +44,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User show(long id) {
+    public User show(Long id) {
         return entityManager.find(User.class, id);
     }
 

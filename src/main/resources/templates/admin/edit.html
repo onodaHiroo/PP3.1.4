@@ -6,23 +6,27 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<form th:method="POST" th:action="@{/update}" th:object="${user}">
+<form th:method="POST" th:action="@{/admin/update}" th:object="${user}">
 
 
     <input type="hidden" th:field="*{id}" id="id"/>
 
     <label for="nickName">Enter name: </label>
-    <input type="text" th:field="*{nickName}" id="nickName"/>
+    <input type="text" th:field="*{username}" id="nickName"/>
 
     <br/>
 
     <label for="email">Enter email: </label>
     <input type="text" th:field="*{email}" id="email"/>
+    <div style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error</div>
 
     <br/>
 
     <label for="password">Enter password: </label>
     <input type="text" th:field="*{password}" id="password"/>
+
+    <div><input type="radio" th:name="role" checked="checked" th:value="user"/>User</div>
+    <div><input type="radio" th:name="role" th:value="admin"/>Admin</div>
 
     <br/>
 
