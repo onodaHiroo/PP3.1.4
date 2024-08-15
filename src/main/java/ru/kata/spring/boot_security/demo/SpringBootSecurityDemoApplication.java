@@ -13,6 +13,7 @@ import ru.kata.spring.boot_security.demo.util.MyValidator;
 import ru.kata.spring.boot_security.demo.util.UserValidator;
 
 import java.util.Collections;
+import java.util.Set;
 
 @SpringBootApplication
 public class SpringBootSecurityDemoApplication {
@@ -35,7 +36,7 @@ public class SpringBootSecurityDemoApplication {
 			userService.addNewUser(admin);
 		}
 		if(!myValidator.userInDataBase(user)){
-			user.setRoles(Collections.singletonList(roleService.getRoleById(1L)));
+			user.setRoles(Set.copyOf(Collections.singletonList(roleService.getRoleById(1L))));
 			userService.addNewUser(user);
 		}
 	}

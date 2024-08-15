@@ -10,6 +10,7 @@ import ru.kata.spring.boot_security.demo.service.interfaces.UserService;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Set;
 
 @Controller()
 @RequestMapping("/admin")
@@ -47,7 +48,7 @@ public class AdminController {
         if (role.equals("admin")) {
             user.setRoles(roleService.getAllRoles());
         } else {
-            user.setRoles(Collections.singletonList(roleService.getRoleById(1L)));
+            user.setRoles(Set.copyOf(Collections.singletonList(roleService.getRoleById(1L))));
         }
 
         userService.addNewUser(user);
@@ -68,7 +69,7 @@ public class AdminController {
         if (role.equals("admin")) {
             user.setRoles(roleService.getAllRoles());
         } else {
-            user.setRoles(Collections.singletonList(roleService.getRoleById(1L)));
+            user.setRoles(Set.copyOf(Collections.singletonList(roleService.getRoleById(1L))));
         }
 
         userService.updateUser(user);

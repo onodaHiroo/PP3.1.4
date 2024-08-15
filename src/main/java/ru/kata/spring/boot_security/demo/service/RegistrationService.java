@@ -9,6 +9,7 @@ import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.interfaces.RoleService;
 
 import java.util.Collections;
+import java.util.Set;
 
 @Service
 public class RegistrationService {
@@ -27,7 +28,7 @@ public class RegistrationService {
     @Transactional
     public void register(User user){
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRoles(Collections.singletonList(roleService.getRoleById(1L)));
+        user.setRoles(Set.copyOf(Collections.singletonList(roleService.getRoleById(1L))));
         userDao.addNewUser(user);
     }
 }

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 public interface RoleDao {
-    List<Role> getAllRoles();
+    Set<Role> getAllRoles();
 
     void addNewRole(Role role);
 

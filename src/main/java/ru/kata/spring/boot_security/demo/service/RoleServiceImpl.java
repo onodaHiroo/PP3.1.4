@@ -19,7 +19,7 @@ public class RoleServiceImpl implements RoleService {
         this.roleDao = roleDao;
     }
 
-    public List<Role> getAllRoles() {
+    public Set<Role> getAllRoles() {
         return roleDao.getAllRoles();
     }
 
