@@ -33,8 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 //аутентификация
                 .and()
-                .formLogin().loginPage("/auth/login")
-                .loginProcessingUrl("/process_login")
+                .formLogin()
                 .successHandler(successUserHandler)
                 .failureUrl("/auth/login?error")
 
@@ -42,7 +41,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/auth/login")
+                .logoutSuccessUrl("/login")
                 .permitAll();
     }
 
