@@ -9,7 +9,6 @@ import ru.kata.spring.boot_security.demo.model.Role;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.persistence.Version;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -45,7 +44,7 @@ public class RoleDaoImpl implements RoleDao {
     @Override
     public Set<Role> findByIdRoles(List<Long> roles) {
         TypedQuery<Role> q = entityManager.createQuery("select r from Role r where r.id =: id", Role.class);
-        q.setParameter("id",roles);
+        q.setParameter("id", roles);
         return new HashSet<>(q.getResultList());
     }
 }

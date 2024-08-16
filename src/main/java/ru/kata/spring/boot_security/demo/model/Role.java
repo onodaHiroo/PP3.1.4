@@ -1,15 +1,12 @@
 package ru.kata.spring.boot_security.demo.model;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 
 @Entity
-@Table(name="roles")
+@Table(name = "roles")
 public class Role implements GrantedAuthority {
 
     @Id
@@ -29,6 +26,10 @@ public class Role implements GrantedAuthority {
         this.name = name;
     }
 
+    @Override
+    public String getAuthority() {
+        return name;
+    }
 
     public List<User> getUsers() {
         return users;
@@ -37,7 +38,6 @@ public class Role implements GrantedAuthority {
     public void setUsers(List<User> users) {
         this.users = users;
     }
-
 
     public long getId() {
         return id;
@@ -53,12 +53,6 @@ public class Role implements GrantedAuthority {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-
-    @Override
-    public String getAuthority() {
-        return name;
     }
 
     @Override

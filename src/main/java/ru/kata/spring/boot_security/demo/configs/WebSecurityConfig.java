@@ -34,8 +34,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //аутентификация
                 .and()
                 .formLogin()
+                .usernameParameter("Email")
                 .successHandler(successUserHandler)
-                .failureUrl("/auth/login?error")
 
 //                разлогин
                 .and()
@@ -48,11 +48,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userService)
-        .passwordEncoder(getPasswordEncoder());
+                .passwordEncoder(getPasswordEncoder());
     }
 
     @Bean
-    public PasswordEncoder getPasswordEncoder(){
+    public PasswordEncoder getPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }
