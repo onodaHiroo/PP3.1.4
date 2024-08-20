@@ -38,12 +38,16 @@ public class AdminController {
     }
 
     @GetMapping(value = "/new")
-    public String newPerson(@ModelAttribute("user") User user) {
+    public String newPerson(@ModelAttribute("user") User user,
+                            @CurrentSecurityContext(expression = "authentication.principal") User principal,
+                            ModelMap modelMap) {
+        modelMap.addAttribute("currentUser", principal);
         return "admin/new";
     }
 
     @PostMapping(value = "/new")
-    public String create(@ModelAttribute("user") User user, @RequestParam(value = "role") String role) {
+    public String create(@ModelAttribute("user") User user,
+                         @RequestParam(value = "role") String role) {
 
         //убрать бы это в сервис
         if (role.equals("admin")) {
