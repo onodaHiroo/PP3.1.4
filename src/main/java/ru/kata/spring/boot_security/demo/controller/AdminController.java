@@ -1,6 +1,7 @@
 package ru.kata.spring.boot_security.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -25,8 +26,9 @@ public class AdminController {
     }
 
     @GetMapping()
-    public String index(ModelMap model) {
+    public String index(@CurrentSecurityContext(expression = "authentication.principal") User principal, ModelMap model) {
         model.addAttribute("users", userService.getListOfUsers());
+        model.addAttribute("user", principal);
         return "admin/index";
     }
 
