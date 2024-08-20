@@ -60,13 +60,6 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @GetMapping(value = "/edit")
-    public String updatePerson(@RequestParam(value = "id") long id, ModelMap modelMap) {
-        modelMap.addAttribute("user", userService.show(id));
-        System.out.println(modelMap);
-        return "admin/edit";
-    }
-
     @PostMapping(value = "/update")
     public String edit(@ModelAttribute("user") User user, @RequestParam(value = "role") String role) {
 
