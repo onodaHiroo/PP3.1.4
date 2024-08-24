@@ -18,8 +18,8 @@ public class Init {
         roleService.addNewRole(new Role(1L, "ROLE_USER"));
         roleService.addNewRole(new Role(2L, "ROLE_ADMIN"));
 
-        User admin = new User("admin", "admin@gmail.com", "admin");
-        User user = new User("user", "user@gmail.com", "user");
+        User admin = new User("admin", "admin", "admin");
+        User user = new User("user", "user", "user");
 
         admin.setRoles(roleService.getAllRoles());
         userService.addNewUser(admin);
