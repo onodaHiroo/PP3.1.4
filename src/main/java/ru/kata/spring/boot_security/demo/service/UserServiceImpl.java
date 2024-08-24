@@ -34,22 +34,25 @@ public class UserServiceImpl implements UserService {
         return userDao.show(id);
     }
 
-    @Transactional
+
     @Override
+    @Transactional
     public void addNewUser(User user) {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userDao.addNewUser(user);
     }
 
-    @Transactional
+
     @Override
+    @Transactional
     public void updateUser(User user) {
         userDao.updateUser(user);
     }
 
-    @Transactional
+
     @Override
+    @Transactional
     public void removeUserById(long id) {
         userDao.removeUserById(id);
     }

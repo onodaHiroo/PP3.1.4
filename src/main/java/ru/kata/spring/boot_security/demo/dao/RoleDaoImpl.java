@@ -3,6 +3,7 @@ package ru.kata.spring.boot_security.demo.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import ru.kata.spring.boot_security.demo.dao.interfaces.RoleDao;
 import ru.kata.spring.boot_security.demo.model.Role;
 
@@ -33,7 +34,7 @@ public class RoleDaoImpl implements RoleDao {
 
     @Override
     public void addNewRole(Role role) {
-        entityManager.persist(role);
+        entityManager.merge(role);
     }
 
     @Override
