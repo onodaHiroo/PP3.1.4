@@ -1,4 +1,5 @@
 package ru.kata.spring.boot_security.demo.util;
+
 import org.springframework.context.ConfigurableApplicationContext;
 import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
@@ -11,7 +12,7 @@ import java.util.Set;
 
 public class Init {
 
-    public Init (ConfigurableApplicationContext context){
+    public Init(ConfigurableApplicationContext context) {
         UserService userService = context.getBean(UserServiceImpl.class);
         RoleService roleService = context.getBean(RoleService.class);
 
