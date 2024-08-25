@@ -1,22 +1,20 @@
 package ru.kata.spring.boot_security.demo.controller;
 
-
 import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import ru.kata.spring.boot_security.demo.model.User;
 
-
-//@Controller
-//@RequestMapping("user")
-public class UserController {
+@RestController
+@RequestMapping("/user")
+public class UserRestController {
 
     @GetMapping("")
-    public String currentUserName(Authentication authentication, ModelMap modelMap) {
+    public User currentUser(Authentication authentication) {
         User user = (User) authentication.getPrincipal();
-        modelMap.addAttribute("user", user);
-        return "user/user";
+        //modelMap.addAttribute("user", user);
+        return user;
     }
 }

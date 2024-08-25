@@ -12,8 +12,8 @@ import ru.kata.spring.boot_security.demo.service.interfaces.UserService;
 import java.util.Collections;
 import java.util.Set;
 
-@Controller()
-@RequestMapping("/admin")
+//@Controller()
+//@RequestMapping("/admin")
 public class AdminController {
 
     private final UserService userService;
