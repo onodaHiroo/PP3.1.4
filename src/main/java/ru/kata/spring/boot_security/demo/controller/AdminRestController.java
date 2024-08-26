@@ -36,14 +36,7 @@ public class AdminRestController {
 
     @PostMapping(value = "/new")
     public ResponseEntity<HttpStatus> create(@RequestBody User user) {
-
-//        if (role.equals("admin")) {
-//            user.setRoles(roleService.getAllRoles());
-//        } else {
-//            user.setRoles(Set.copyOf(Collections.singletonList(roleService.getRoleById(1L))));
-//        }
-
-        user.setRoles(Set.copyOf(Collections.singletonList(roleService.getRoleById(1L))));
+        //user.setRoles(Set.copyOf(Collections.singletonList(roleService.getRoleById(1L))));
         userService.addNewUser(user);
         return ResponseEntity.ok(HttpStatus.OK);
     }
