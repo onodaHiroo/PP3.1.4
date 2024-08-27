@@ -125,11 +125,13 @@
                             </div>
                         </div>
 
-<!--                        таб для нового пользователя-->
+                        <!--                    таб добавления нового пользователя-->
                         <div class="tab-pane fade text-center" id="newUser">
                             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                                 <div class="navbar-brand">Add new user</div>
                             </nav>
+
+                            <!--                        форма добавления нового пользователя-->
                             <div class="col-md bg-white border">
                                 <form id="addForm" class="offset-md-4 col-md-3 mt-4 mb-4">
 
@@ -155,11 +157,32 @@
                                             <option value="2">ROLE_ADMIN</option>
                                         </select>
                                     </div>
+                                    <button class="btn btn-success btn-lg" id="addUser" type="submit">Add new user</button>
                                 </form>
-                                <button class="btn btn-success btn-lg" id="addUser" type="submit">Add new user</button>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog" aria-labelledby="someDefaultModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                    </div>
+
+                    <div class="modal-footer">
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -169,5 +192,7 @@
 <script type="text/javascript" src="user.js"></script>
 <script type="text/javascript" src="admin/table.js"></script>
 <script type="text/javascript" src="admin/createNewUser.js"></script>
+<script type="text/javascript" src="admin/deleteForm.js"></script>
+<script type="text/javascript" src="admin/modal.js"></script>
 </body>
 </html>

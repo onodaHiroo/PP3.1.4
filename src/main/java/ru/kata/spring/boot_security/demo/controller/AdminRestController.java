@@ -39,4 +39,16 @@ public class AdminRestController {
         userService.addNewUser(user);
         return ResponseEntity.ok(HttpStatus.OK);
     }
+
+    @GetMapping(value = "/delete")
+    public ResponseEntity<HttpStatus> delete(@RequestParam(value = "id") long id) {
+        userService.removeUserById(id);
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/update")
+    public ResponseEntity<HttpStatus> edit(@ModelAttribute("user") User user) {
+        userService.updateUser(user);
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
 }

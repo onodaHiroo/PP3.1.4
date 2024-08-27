@@ -5,11 +5,13 @@ let listRoles = [
     {id: 2, name: "ROLE_ADMIN"}]
 
 $(async function () {
-    await getUser();
+    await getCurrentUser();
     await userInfo();
     await title();
     await getAllUsers();
     await create();
+    await getDefaultModal();
+    await getNewUserForm()
 })
 
 const userFetch = {
@@ -25,7 +27,18 @@ const userFetch = {
         headers: userFetch.head,
         body: JSON.stringify(user),
     }),
+    deleteUser: async (id) => await fetch(`/admin/delete`, {
+        method: 'GET',
+        headers: userFetch.head,
+        body: JSON.stringify(id),
+    }),
+    updateUser: async (user, id) => await fetch(`admin/update`, {
+        method: 'PATCH',
+        headers: userFetch.head,
+        body: JSON.stringify(user)
+    }),
 }
+
 
 async function userInfo() {
     let temporary = '';

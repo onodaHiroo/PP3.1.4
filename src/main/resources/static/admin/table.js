@@ -13,9 +13,30 @@ async function getAllUsers() {
                     <td>${user.email}</td>
                     <td>${user.password}</td>
                     <td>${roles}</td>
+                    <td>
+                        <button type="button" data-userid="${user.id}" data-action="edit" class="btn btn-info"
+                            className data-toggle="modal" data-target="#editModal">Edit</button>
+                    </td>
+                    <td>
+                        <button type="button" data-userid="${user.id}" data-action="delete" class="btn btn-danger"
+                            className data-toggle="modal" data-target="#deleteModal">Delete</button>
+                    </td>
                 </tr>
                `;
             })
+
+            $("#tableUsers").find('button').on('click', (event) => {
+                let defaultModal = $('#defaultModal');
+
+                let targetButton = $(event.target);
+                let buttonUserId = targetButton.attr('data-userid');
+                let buttonAction = targetButton.attr('data-action');
+
+                defaultModal.attr('data-userid', buttonUserId);
+                defaultModal.attr('data-action', buttonAction);
+                defaultModal.modal('show');
+            })
+
             table.innerHTML = temporary;
         })
 }

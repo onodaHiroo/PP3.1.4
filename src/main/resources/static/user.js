@@ -1,4 +1,4 @@
-async function getUser() {
+async function getCurrentUser() {
     let temporary = '';
     const tableUser = document.querySelector('#tableUser tbody');
     await userFetch.findCurrentUser()
