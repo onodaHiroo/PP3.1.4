@@ -8,13 +8,13 @@ import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.interfaces.RoleService;
 import ru.kata.spring.boot_security.demo.service.interfaces.UserService;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.sql.Array;
+import java.util.*;
 
 @RestController()
 @RequestMapping("/admin")

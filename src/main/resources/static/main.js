@@ -1,14 +1,15 @@
 let isUser = true;
 
 let listRoles = [
-    {id: 1, role: "ROLE_USER"},
-    {id: 2, role: "ROLE_ADMIN"}]
+    {id: 1, name: "ROLE_USER"},
+    {id: 2, name: "ROLE_ADMIN"}]
 
 $(async function () {
     await getUser();
     await userInfo();
     await title();
     await getAllUsers();
+    await create();
 })
 
 const userFetch = {
@@ -19,6 +20,11 @@ const userFetch = {
     },
     findCurrentUser: async () => await fetch(`/user`),
     findAllUsers: async () => await fetch(`/admin`),
+    addNewUser: async (user) => await fetch('/admin/new', {
+        method: 'POST',
+        headers: userFetch.head,
+        body: JSON.stringify(user),
+    }),
 }
 
 async function userInfo() {

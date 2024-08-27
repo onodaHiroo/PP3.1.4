@@ -77,14 +77,14 @@
                         </ul>
                     </div>
 
-<!--                    таб1 для таблицы юзеров, админка-->
+                    <!--                    таб1 для таблицы юзеров, админка-->
                     <div class="tab-content border">
                         <div sec:authorize="hasAnyRole('ADMIN')" class="tab-pane fade" id="adminTable">
                             <div class="p-3 border">
                                 <h5 class="my-0 mx-2">All users</h5>
                             </div>
                             <div class="p-3 bg-white border border-top-0">
-<!--                                таблица пользователей у админа-->
+                                <!--                                таблица пользователей у админа-->
                                 <table class="table table-striped" id="tableUsers">
                                     <thead>
                                     <tr>
@@ -102,28 +102,63 @@
                                 </table>
                             </div>
                         </div>
-                    <!--                    таб2 для юзера-->
-                    <div class="tab-pane fade" id="userTable">
-                        <div class="p-3 border">
-                            <h5 class="my-0 mx-2">About user</h5>
+                        <!--                    таб2 для юзера-->
+                        <div class="tab-pane fade" id="userTable">
+                            <div class="p-3 border">
+                                <h5 class="my-0 mx-2">About user</h5>
+                            </div>
+                            <!--                таблица пользователя-->
+                            <div class="p-3 bg-white border border-top-0">
+                                <table class="usersTable table table-striped bg-white" id="tableUser">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Username</th>
+                                        <th>Email</th>
+                                        <th>Password</th>
+                                        <th>Role</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                        <!--                таблица пользователя-->
-                        <div class="p-3 bg-white border border-top-0">
-                            <table class="usersTable table table-striped bg-white" id="tableUser">
-                                <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Username</th>
-                                    <th>Email</th>
-                                    <th>Password</th>
-                                    <th>Role</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
+
+<!--                        таб для нового пользователя-->
+                        <div class="tab-pane fade text-center" id="newUser">
+                            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                                <div class="navbar-brand">Add new user</div>
+                            </nav>
+                            <div class="col-md bg-white border">
+                                <form id="addForm" class="offset-md-4 col-md-3 mt-4 mb-4">
+
+                                    <div class="form-group">
+                                        <label for="newUsername" class="col-form-label">Username</label>
+                                        <input type="text" class="form-control" id="newUsername">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="newEmail" class="com-form-label">Email</label>
+                                        <input type="text" class="form-control" id="newEmail">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="newPassword" class="com-form-label">Password</label>
+                                        <input type="password" class="form-control" id="newPassword">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="newRoles" class="com-form-label">Role:</label>
+                                        <select multiple id="newRoles" class="form-control select" size="2">
+                                            <option value="1">ROLE_USER</option>
+                                            <option value="2">ROLE_ADMIN</option>
+                                        </select>
+                                    </div>
+                                </form>
+                                <button class="btn btn-success btn-lg" id="addUser" type="submit">Add new user</button>
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </div>
             </div>
@@ -133,5 +168,6 @@
 <script type="text/javascript" src="main.js"></script>
 <script type="text/javascript" src="user.js"></script>
 <script type="text/javascript" src="admin/table.js"></script>
+<script type="text/javascript" src="admin/createNewUser.js"></script>
 </body>
 </html>
