@@ -10,6 +10,7 @@ import ru.kata.spring.boot_security.demo.service.interfaces.RoleService;
 import ru.kata.spring.boot_security.demo.service.interfaces.UserService;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 //@Controller()
@@ -47,29 +48,16 @@ public class AdminController {
 
     @PostMapping(value = "/new")
     public String create(@ModelAttribute("user") User user,
-                         @RequestParam(value = "role") String role) {
-
-        //убрать бы это в сервис
-        if (role.equals("admin")) {
-            user.setRoles(roleService.getAllRoles());
-        } else {
-            user.setRoles(Set.copyOf(Collections.singletonList(roleService.getRoleById(1L))));
-        }
-
+                         @RequestParam(value = "listRoles") List<Long> roles) {
+        user.setRoles(roleService.findByIdRoles(roles));
         userService.addNewUser(user);
         return "redirect:/admin";
     }
 
     @PostMapping(value = "/update")
-    public String edit(@ModelAttribute("user") User user, @RequestParam(value = "role") String role) {
-
-        //убрать бы это в сервис
-        if (role.equals("admin")) {
-            user.setRoles(roleService.getAllRoles());
-        } else {
-            user.setRoles(Set.copyOf(Collections.singletonList(roleService.getRoleById(1L))));
-        }
-
+    public String edit(@ModelAttribute("user") User user,
+                       @RequestParam(value = "listRoles") List<Long> roles) {
+        user.setRoles(roleService.findByIdRoles(roles));
         userService.updateUser(user);
         return "redirect:/admin";
     }
