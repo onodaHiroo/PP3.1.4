@@ -5,7 +5,10 @@ let listRoles = [
     {id: 2, role: "ROLE_ADMIN"}]
 
 $(async function () {
+    await getUser();
     await userInfo();
+    await title();
+    await getAllUsers();
 })
 
 const userFetch = {
@@ -15,6 +18,7 @@ const userFetch = {
         'Referer': null
     },
     findCurrentUser: async () => await fetch(`/user`),
+    findAllUsers: async () => await fetch(`/admin`),
 }
 
 async function userInfo() {
@@ -32,4 +36,20 @@ async function userInfo() {
             `;
         });
     info.innerHTML = temporary;
+}
+
+async function title() {
+    let temporary = ''
+    const titleTab = document.querySelector('#titleTab');
+    if (isUser) {
+        temporary = `
+            <h1 className="titleTab" id="titleTab">User information page</h1>
+            `;
+        titleTab.innerHTML = temporary;
+    } else {
+        temporary = `
+            <h1  className="titleTab" id="titleTab">Admin panel</h1>
+            `;
+        titleTab.innerHTML = temporary;
+    }
 }

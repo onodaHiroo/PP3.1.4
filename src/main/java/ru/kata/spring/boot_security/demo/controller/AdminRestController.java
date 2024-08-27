@@ -30,13 +30,12 @@ public class AdminRestController {
     }
 
     @GetMapping()
-    public List<User> index() {
-        return userService.getListOfUsers();
+    public ResponseEntity<List<User>> index() {
+        return new ResponseEntity<>(userService.getListOfUsers(), HttpStatus.OK);
     }
 
     @PostMapping(value = "/new")
     public ResponseEntity<HttpStatus> create(@RequestBody User user) {
-        //user.setRoles(Set.copyOf(Collections.singletonList(roleService.getRoleById(1L))));
         userService.addNewUser(user);
         return ResponseEntity.ok(HttpStatus.OK);
     }

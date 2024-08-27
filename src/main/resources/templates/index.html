@@ -18,8 +18,19 @@
     <meta name="theme-color" content="#7952b3">
 </head>
 <body>
-<div class="bg-light">
-    <main>
+
+
+<style>
+    body {
+        background-color: #f8f9fa; /* цвет фона bg-light */
+    }
+</style>
+
+
+<main>
+
+    <!--    серая полоса сверху-->
+    <div class="bg-light">
         <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
             <div class="container-fluid" id="info">
                 <p class="navbar-brand text-white"></p>
@@ -28,10 +39,99 @@
                 <button type="submit" class="btn btn-dark text-secondary">Logout</button>
             </form>
         </nav>
+    </div>
 
-    </main>
-</div>
+    <div class="container-fluid h-100">
+        <div class="row">
 
+            <!--        колонки слева-->
+            <div class="p-0 col-2 h-100">
+                <div class="nav flex-column nav-pills pt-4 bg-white" aria-orientation="vertical" role="tablist">
+                    <a sec:authorize="hasRole('ADMIN')"
+                       class="nav-link active"
+                       aria-controls="v-pills-home"
+                       id="adminTab"
+                       href="#adminTable"
+                       data-toggle="tab">Admin</a>
+                    <a class="nav-item nav-link"
+                       id="userTab"
+                       href="#userTable"
+                       data-toggle="tab">User</a>
+                </div>
+            </div>
+
+            <div class="p-0 col-10">
+                <!--                контент посередине, табы-->
+                <div class="tabs p-4 pt-4 tab-content">
+                    <!--            подпись сверху таблицы-->
+                    <h1 className="titleTab" id="titleTab"></h1>
+
+                    <div class="tabs">
+                        <ul sec:authorize="hasRole('ADMIN')" class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#adminTable" data-toggle="tab">Users table</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#newUser" data-toggle="tab">New user</a>
+                            </li>
+                        </ul>
+                    </div>
+
+<!--                    таб1 для таблицы юзеров, админка-->
+                    <div class="tab-content border">
+                        <div sec:authorize="hasAnyRole('ADMIN')" class="tab-pane fade" id="adminTable">
+                            <div class="p-3 border">
+                                <h5 class="my-0 mx-2">All users</h5>
+                            </div>
+                            <div class="p-3 bg-white border border-top-0">
+<!--                                таблица пользователей у админа-->
+                                <table class="table table-striped" id="tableUsers">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Username</th>
+                                        <th>Email</th>
+                                        <th>Password</th>
+                                        <th>Roles</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    <!--                    таб2 для юзера-->
+                    <div class="tab-pane fade" id="userTable">
+                        <div class="p-3 border">
+                            <h5 class="my-0 mx-2">About user</h5>
+                        </div>
+                        <!--                таблица пользователя-->
+                        <div class="p-3 bg-white border border-top-0">
+                            <table class="usersTable table table-striped bg-white" id="tableUser">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Username</th>
+                                    <th>Email</th>
+                                    <th>Password</th>
+                                    <th>Role</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 <script type="text/javascript" src="main.js"></script>
+<script type="text/javascript" src="user.js"></script>
+<script type="text/javascript" src="admin/table.js"></script>
 </body>
 </html>
