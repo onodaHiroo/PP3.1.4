@@ -36,7 +36,7 @@ public class AdminRestController {
 
     @PostMapping(value = "/new")
     public ResponseEntity<HttpStatus> create(@RequestBody User user) {
-        userService.addNewUser(user);
+        userService.addOrUpdateNewUser(user);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
@@ -48,7 +48,7 @@ public class AdminRestController {
 
     @PostMapping(value = "/update")
     public ResponseEntity<HttpStatus> edit(@ModelAttribute("user") User user) {
-        userService.updateUser(user);
+        userService.addOrUpdateNewUser(user);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 }
