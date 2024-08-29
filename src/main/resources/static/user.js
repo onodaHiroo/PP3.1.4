@@ -24,9 +24,11 @@ async function getCurrentUser() {
                         isUser = false;
                     }
                 }
+                console.log(role);
                 if (isUser) {
                     $("#userTable").addClass("show active");
                     $("#userTab").addClass("show active");
+                    $("#adminTab").hide();
                 } else {
                     $("#adminTable").addClass("show active");
                     $("#adminTab").addClass("show active");
