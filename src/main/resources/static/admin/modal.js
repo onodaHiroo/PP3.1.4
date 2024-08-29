@@ -12,10 +12,9 @@ async function getDefaultModal() {
             case 'delete':
                 deleteForm(thisModal, userId);
                 break;
-            // case 'edit':
-            //     updateForm(thisModal, userId);
-            //     break;
-
+            case 'edit':
+                updateForm(thisModal, userId);
+                break;
         }
     }).on("hidden.bs.modal", (s1) => {
         let thisModal = $(s1.target);

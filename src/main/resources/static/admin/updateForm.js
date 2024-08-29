@@ -12,26 +12,15 @@ async function updateForm(modal, id) {
         let bodyForm = `
             <form class="form-group text-center" id="editUser">
                <div class="form-group">
-                    <label for="userId" class="col-form-label">ID</label>
-                    <input type="text" class="form-control username" id="userId" value="${user.id}" readonly>
+                    <label for="id" class="col-form-label">ID</label>
+                    <input type="text" class="form-control" id="id" value="${user.id}" readonly>
                </div>
                    
                <div class="form-group">
-                    <label for="firstName" class="col-form-label">First Name</label>
-                    <input type="text" class="form-control username" id="firstName" value="${user.firstName}">
-               </div>
-               
-               
-                <div class="form-group">
-                    <label for="lastName" class="com-form-label">Last Name</label>
-                    <input type="text" class="form-control" id="lastName" value="${user.lastName}">
-                </div>
-                
-                <div class="form-group">
-                    <label for="age" class="com-form-label">Age</label>
-                    <input type="number" class="form-control" id="age" value="${user.age}">
-                </div>
-                
+                    <label for="firstName" class="col-form-label">Username</label>
+                    <input type="text" class="form-control" id="username" value="${user.username}">
+               </div>    
+                  
                 <div class="form-group">
                     <label for="email" class="com-form-label">Email</label>
                     <input type="text" class="form-control" id="email" value="${user.email}">
@@ -65,23 +54,19 @@ async function updateForm(modal, id) {
             }
             return tempArray;
         }
-        let userId = modal.find("#userId").val().trim();
-        let firstName = modal.find("#firstName").val().trim();
-        let lastName = modal.find("#lastName").val().trim();
-        let age = modal.find("#age").val().trim();
+        let id = modal.find("#id").val().trim();
+        let username = modal.find("#username").val().trim();
         let email = modal.find("#email").val().trim();
         let password = modal.find("#password").val().trim();
         let data = {
-            id: userId,
-            firstName: firstName,
-            lastName: lastName,
-            age: age,
+            id: id,
+            username: username,
             email: email,
             password: password,
             roles: thisRoles()
 
         }
-        const response = await userFetch.updateUser(data, id);
+        const response = await userFetch.updateUser(data);
 
         if (response.ok) {
             await getAllUsers();

@@ -29,8 +29,8 @@ const userFetch = {
     }),
     findUserById: async (id) => await fetch(`/admin/show?id=${id}`),
     deleteUser: async (id) => await fetch(`/admin/delete?id=${id}`),
-    updateUser: async (user, id) => await fetch(`/admin/update`, {
-        method: 'PATCH',
+    updateUser: async (user) => await fetch(`/admin/update`, {
+        method: 'POST',
         headers: userFetch.head,
         body: JSON.stringify(user)
     }),

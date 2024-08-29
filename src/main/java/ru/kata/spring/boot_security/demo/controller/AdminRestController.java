@@ -47,7 +47,7 @@ public class AdminRestController {
     }
 
     @PostMapping(value = "/update")
-    public ResponseEntity<HttpStatus> edit(@ModelAttribute("user") User user) {
+    public ResponseEntity<HttpStatus> edit(@RequestBody User user) {
         userService.addOrUpdateNewUser(user);
         return ResponseEntity.ok(HttpStatus.OK);
     }
