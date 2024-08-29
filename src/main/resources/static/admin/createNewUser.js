@@ -1,3 +1,11 @@
+async function getNewUserForm() {
+    let button = $(`#addUser`);
+    let form = $(`#addForm`);
+    button.on('click', () => {
+        form.show()
+    })
+}
+
 async function create() {
     $('#addUser').click(async () =>  {
         let addUserForm = $('#addForm')

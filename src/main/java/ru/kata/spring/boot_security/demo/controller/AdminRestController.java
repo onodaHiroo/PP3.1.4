@@ -51,4 +51,9 @@ public class AdminRestController {
         userService.addOrUpdateNewUser(user);
         return ResponseEntity.ok(HttpStatus.OK);
     }
+
+    @GetMapping("/show")
+    public ResponseEntity<User> getUserById(@RequestParam(value = "id") long id) {
+        return new ResponseEntity<>(userService.show(id), HttpStatus.OK);
+    }
 }

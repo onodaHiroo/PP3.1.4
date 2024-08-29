@@ -15,17 +15,18 @@ async function getAllUsers() {
                     <td>${roles}</td>
                     <td>
                         <button type="button" data-userid="${user.id}" data-action="edit" class="btn btn-info"
-                            className data-toggle="modal" data-target="#editModal">Edit</button>
+                             data-toggle="modal" data-target="#editModal">Edit</button>
                     </td>
                     <td>
                         <button type="button" data-userid="${user.id}" data-action="delete" class="btn btn-danger"
-                            className data-toggle="modal" data-target="#deleteModal">Delete</button>
+                             data-toggle="modal" data-target="#deleteModal">Delete</button>
                     </td>
                 </tr>
                `;
             })
 
-            $("#tableUsers").find('button').on('click', (event) => {
+            $("#tableUsers").on('click', '.btn', (event) => {
+                console.log("edit or delete button pressed");
                 let defaultModal = $('#defaultModal');
 
                 let targetButton = $(event.target);

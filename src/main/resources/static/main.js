@@ -9,9 +9,9 @@ $(async function () {
     await userInfo();
     await title();
     await getAllUsers();
-    await create();
     await getDefaultModal();
-    await getNewUserForm()
+    await create();
+    await getNewUserForm();
 })
 
 const userFetch = {
@@ -27,12 +27,9 @@ const userFetch = {
         headers: userFetch.head,
         body: JSON.stringify(user),
     }),
-    deleteUser: async (id) => await fetch(`/admin/delete`, {
-        method: 'GET',
-        headers: userFetch.head,
-        body: JSON.stringify(id),
-    }),
-    updateUser: async (user, id) => await fetch(`admin/update`, {
+    findUserById: async (id) => await fetch(`/admin/show?id=${id}`),
+    deleteUser: async (id) => await fetch(`/admin/delete?id=${id}`),
+    updateUser: async (user, id) => await fetch(`/admin/update`, {
         method: 'PATCH',
         headers: userFetch.head,
         body: JSON.stringify(user)

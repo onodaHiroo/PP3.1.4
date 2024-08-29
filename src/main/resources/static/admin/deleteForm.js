@@ -1,6 +1,5 @@
 async function deleteForm(modal, id) {
-    let tuser = await userFetch.findUserById(id);
-    let user = tuser.json();
+    let user = (await userFetch.findUserById(id)).json();
 
     modal.find('.modal-title').html('Delete user');
 
@@ -11,34 +10,35 @@ async function deleteForm(modal, id) {
 
     user.then(user => {
         let bodyForm = `
-       <form class="form-group text-center" id="editUser">
+            <form class="form-group text-center" id="deleteUser">
                <div class="form-group">
                     <label for="userId" class="col-form-label">ID</label>
-                    <input type="number" class="form-control username" id="userId" value="${user.id}" readonly>
+                    <input type="text" class="form-control username" id="userId" value="${user.id}" readonly>
                </div>
                    
                <div class="form-group">
-                    <label for="username" class="col-form-label">First Name</label>
+                    <label for="username" class="col-form-label">Username</label>
                     <input type="text" class="form-control username" id="username" value="${user.username}" readonly>
-               </div>  
-                
-                <div class="form-group">
+               </div>
+               
+               <div class="form-group">
                     <label for="email" class="com-form-label">Email</label>
                     <input type="text" class="form-control" id="email" value="${user.email}" readonly>
                 </div>
 
                 <div class="form-group">
-                    <label for="password" class="com-form-label">Password</label>
+                    <label for="password" class="com-form-label">Age</label>
                     <input type="password" class="form-control" id="password" value="${user.password}" readonly>
                 </div>
                 
-                <div class="form-group">
-                    <label for="roles" class="com-form-label">Role</label>
-                    <select multiple id="roles" size="2" class="form-control form-control-sm" disabled>
-                    <option>${user.roles}</option>
+                 <div class="form-group">
+                <label for="roles" class="com-form-label">Role:</label>
+                <select id="roles" class="form-control select" size="2" name="roles" style="max-height: 100px" disabled>
+                <option>${user.roles.map(role => " " + role.name)}</option>
+            })}</option>
+                </select>
+            </div>
 
-                    </select>
-                </div>
             </form>
         `;
         modal.find('.modal-body').append(bodyForm);

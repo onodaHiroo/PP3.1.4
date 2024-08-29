@@ -1,11 +1,3 @@
-async function getNewUserForm() {
-    let button = $(`#addUser`);
-    let form = $(`#addForm`);
-    button.on('click', () => {
-        form.show()
-    })
-}
-
 async function getDefaultModal() {
     $('#defaultModal').modal({
         show: false,
