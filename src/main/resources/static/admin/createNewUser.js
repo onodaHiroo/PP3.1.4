@@ -8,6 +8,7 @@ async function getNewUserForm() {
 
 async function create() {
     $('#addUser').click(async () =>  {
+        event.preventDefault();
         let addUserForm = $('#addForm')
         let username = addUserForm.find('#newUsername').val().trim();
         let email = addUserForm.find('#newEmail').val().trim();
