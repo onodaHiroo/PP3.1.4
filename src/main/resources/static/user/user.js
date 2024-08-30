@@ -29,6 +29,7 @@ async function getCurrentUser() {
                     $("#userTable").addClass("show active");
                     $("#userTab").addClass("show active");
                     $("#adminTab").hide();
+                    $("#adminTabs").hide();
                 } else {
                     $("#adminTable").addClass("show active");
                     $("#adminTab").addClass("show active");
