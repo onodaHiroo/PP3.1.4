@@ -10,7 +10,6 @@ import ru.kata.spring.boot_security.demo.service.interfaces.RoleService;
 import ru.kata.spring.boot_security.demo.service.interfaces.UserService;
 
 import java.util.Collections;
-import java.util.Set;
 
 @Component
 public class ApplicationRunnerImpl implements ApplicationRunner {

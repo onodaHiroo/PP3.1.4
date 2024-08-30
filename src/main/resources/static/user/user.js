@@ -16,7 +16,7 @@ async function getCurrentUser() {
             `;
             tableUser.innerHTML = temporary;
 
-            $(function (){
+            $(function () {
                 let role = ""
                 for (let i = 0; i < user.roles.length; i++) {
                     role = user.roles[i].name
