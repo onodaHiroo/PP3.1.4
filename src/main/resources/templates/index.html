@@ -52,11 +52,13 @@
                        aria-controls="v-pills-home"
                        id="adminTab"
                        href="#adminTable"
-                       data-toggle="tab">Admin</a>
+                       data-toggle="tab"
+                       onclick="showAdminTabs()">Admin</a>
                     <a class="nav-item nav-link"
                        id="userTab"
                        href="#userTable"
-                       data-toggle="tab">User</a>
+                       data-toggle="tab"
+                       onclick="hideAdminTabs()">User</a>
                 </div>
             </div>
 
@@ -68,7 +70,7 @@
 
                     <div class="tabs" id="adminTabs">
                         <ul sec:authorize="hasRole('ADMIN')" class="nav nav-tabs">
-                            <li class="nav-item">
+                            <li class="nav-item" id="adminTableTab">
                                 <a class="nav-link active" href="#adminTable" data-toggle="tab">Users table</a>
                             </li>
                             <li class="nav-item">

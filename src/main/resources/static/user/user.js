@@ -37,3 +37,19 @@ async function getCurrentUser() {
             })
         })
 }
+
+function hideAdminTabs() {
+    $("#adminTabs").hide();
+    updateTitleTab('User information page');
+}
+
+function showAdminTabs() {
+    $("#adminTabs").show();
+    $('a[href="#adminTable"]').tab('show');
+    updateTitleTab('Admin panel');
+}
+
+function updateTitleTab(title) {
+    const titleTab = document.querySelector('#titleTab');
+    titleTab.innerHTML = `<h1 className="titleTab" id="titleTab">${title}</h1>`;
+}
